@@ -1,0 +1,26 @@
+workflow_version: 1
+
+kaggle:
+  competition: holomine-property-price-prediction-from-sales-desc-task-2
+  model_dataset: CHANGEME/holomine-property-price-prediction-from-sales-desc-task-2-models       # private, versioned; holds model.pkl per experiment
+  submissions_per_day: 5
+  deadline: TBD
+
+task:
+  type: regression                    # ranking | regression | classification | multilabel
+  metric: mae                     # resolves to metrics.py:REGISTRY[<name>]
+  direction: minimize               # maximize | minimize
+  secondary: []             # reported beside the primary, never selected on
+  id_col: id
+
+repro:
+  runs: 3
+  short_run_minutes: 20                # a run over this is gated at reduced_params
+  gate: byte_identical
+  reduced_params:                      # injected by papermill for the gate runs only
+    N_TRIALS: 3
+    N_SEEDS: 1
+
+paths:
+  raw: data/raw
+  modeling: modeling

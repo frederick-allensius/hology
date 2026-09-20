@@ -1,0 +1,14 @@
+data/
+*.pkl
+*.joblib
+*.cbm
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+.venv/
+kaggle.json
+*.credentials
+.gstack/
+.pytest_cache/
+modeling/**/notebook.executed.ipynb
+*.zip

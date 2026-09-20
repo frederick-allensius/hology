@@ -1,0 +1,46 @@
+{
+  "id": "exp-000",
+  "slug": "baseline-median",
+  "parent": null,
+  "changed": [
+    "5-fold KFold(shuffle=True, random_state=42) CV harness using metrics.py:mae",
+    "constant-median predictor (score floor) vs constant-mean predictor (metric verification)",
+    "ConstantMedianModel cloudpickle bundle exposing predict(**frames) -> DataFrame"
+  ],
+  "rationale_ref": "hypothesis.md",
+  "scores": {
+    "cv_primary": 550252.456284153,
+    "cv_std": null,
+    "cv_secondary": {
+      "cv_mean_baseline_for_reference": 651715.9941094697
+    },
+    "lb_public": null
+  },
+  "delta_vs_parent": {},
+  "repro": {
+    "runs": 3,
+    "params": {
+      "PROJECT_ROOT": "../../..",
+      "EXP_DIR": ".",
+      "SEED": 42,
+      "N_SPLITS": 5
+    },
+    "byte_identical": true,
+    "reduced_mode": false,
+    "submission_sha256": "e88282e278ee6aa92131f6ebf8820a6f9e13921c67eba5bab3d4db09c5cb281e",
+    "loaded_matches": true,
+    "run_hashes": [
+      "e88282e278ee6aa92131f6ebf8820a6f9e13921c67eba5bab3d4db09c5cb281e",
+      "e88282e278ee6aa92131f6ebf8820a6f9e13921c67eba5bab3d4db09c5cb281e",
+      "e88282e278ee6aa92131f6ebf8820a6f9e13921c67eba5bab3d4db09c5cb281e"
+    ]
+  },
+  "runtime_s": 11.0,
+  "env_hash": null,
+  "model": {
+    "sha256": "c1b683bf6515513fda57a49f61acdb818492cbf602cadda4373dd4a045b06c50",
+    "bytes": 1384,
+    "kaggle_dataset_version": null
+  },
+  "created": "2026-09-20T12:23:20+07:00"
+}

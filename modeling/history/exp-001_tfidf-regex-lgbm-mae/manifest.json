@@ -1,0 +1,55 @@
+{
+  "id": "exp-001",
+  "slug": "tfidf-regex-lgbm-mae",
+  "parent": "exp-000",
+  "changed": [
+    "regex-engineered domain features (bedroom/bathroom/sqft/acre/garage/pool/hoa/renovated/new_construction/year_built/redacted flags + char_len + word_count)",
+    "word-level TF-IDF (1-2gram, max_features=6000) + char-level TF-IDF (char_wb 3-5gram, max_features=6000), each reduced via TruncatedSVD(n_components=60)",
+    "LightGBM regressor, objective=regression_l1 (native MAE), n_estimators=300, learning_rate=0.05, num_leaves=31, no subsampling (feature_fraction=bagging_fraction=1.0)",
+    "5-fold KFold CV with TF-IDF/SVD refit inside every fold (no vocabulary leakage)"
+  ],
+  "rationale_ref": "hypothesis.md",
+  "scores": {
+    "cv_primary": 396860.9364714283,
+    "cv_std": 21194.657397858762,
+    "cv_secondary": {},
+    "lb_public": null
+  },
+  "delta_vs_parent": {
+    "cv_primary": -153391.51981272473,
+    "cv_primary_pct": -27.9
+  },
+  "repro": {
+    "runs": 3,
+    "params": {
+      "PROJECT_ROOT": "../../..",
+      "EXP_DIR": ".",
+      "SEED": 42,
+      "N_SPLITS": 5,
+      "N_THREADS": 4,
+      "TFIDF_MAX_FEATURES": 6000,
+      "TFIDF_MIN_DF": 3,
+      "SVD_COMPONENTS": 60,
+      "N_ESTIMATORS": 300,
+      "LEARNING_RATE": 0.05,
+      "NUM_LEAVES": 31
+    },
+    "byte_identical": true,
+    "reduced_mode": false,
+    "submission_sha256": "5e112c776ffebccc3b8dab6c7fd4d1d569cfca4c64bf12db49ddac5f7a2b606d",
+    "loaded_matches": true,
+    "run_hashes": [
+      "5e112c776ffebccc3b8dab6c7fd4d1d569cfca4c64bf12db49ddac5f7a2b606d",
+      "5e112c776ffebccc3b8dab6c7fd4d1d569cfca4c64bf12db49ddac5f7a2b606d",
+      "5e112c776ffebccc3b8dab6c7fd4d1d569cfca4c64bf12db49ddac5f7a2b606d"
+    ]
+  },
+  "runtime_s": 454.2,
+  "env_hash": null,
+  "model": {
+    "sha256": "627ac6606faa74cef90c4b65983a9ea8edadc2a7508dc4d3d0047883ab490a01",
+    "bytes": 7159693,
+    "kaggle_dataset_version": null
+  },
+  "created": "2026-09-20T12:26:59+07:00"
+}

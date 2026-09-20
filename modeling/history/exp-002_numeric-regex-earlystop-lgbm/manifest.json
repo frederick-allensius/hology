@@ -1,0 +1,38 @@
+{
+  "id": "exp-002",
+  "slug": "numeric-regex-earlystop-lgbm",
+  "parent": "exp-001",
+  "changed": [
+    "numeric-magnitude regex features (bed/bath count, sqft, acreage, garage spaces, year built as NaN-capable floats) replacing exp-001's boolean-only flags",
+    "larger TF-IDF vocabulary (20k word + 20k char, up from 6k/6k)",
+    "log1p(listPrice) training target with expm1 back-transform, instead of raw-scale training",
+    "more model capacity: num_leaves=63, n_estimators=2500 fixed (up from num_leaves=31, n_estimators=300), no early-stopping holdout so 100% of fold data is used",
+    "rejected and documented (not adopted): sentence-embedding features (all-MiniLM-L6-v2) and out-of-fold city gazetteer target-encoding, both tested on a holdout and found to not improve or slightly hurt score"
+  ],
+  "rationale_ref": "hypothesis.md",
+  "scores": {
+    "cv_primary": 363814.4262500411,
+    "cv_std": 18447.46438890421,
+    "cv_secondary": {},
+    "lb_public": null
+  },
+  "delta_vs_parent": {
+    "cv_primary": -33046.5102213872,
+    "cv_primary_pct": -8.3
+  },
+  "repro": {
+    "runs": 0,
+    "byte_identical": null,
+    "reduced_mode": null,
+    "submission_sha256": null,
+    "loaded_matches": null
+  },
+  "runtime_s": null,
+  "env_hash": null,
+  "model": {
+    "sha256": null,
+    "bytes": null,
+    "kaggle_dataset_version": null
+  },
+  "created": "2026-09-20T16:31:40+07:00"
+}
