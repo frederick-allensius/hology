@@ -1,0 +1,63 @@
+{
+  "id": "exp-003",
+  "slug": "conservative-numeric-regularized",
+  "parent": "exp-002",
+  "changed": [
+    "kept numeric-magnitude regex features unchanged (verified real signal, low overfitting risk)",
+    "reverted TF-IDF vocabulary and TruncatedSVD components to exp-001's conservative sizes (6000/6000 word+char, 60/60 SVD, down from exp-002's 20000/20000 and 120/120)",
+    "reverted LightGBM capacity down (num_leaves=31, n_estimators=500, down from num_leaves=63, n_estimators=2500)",
+    "added explicit regularization: reg_alpha=1.0, reg_lambda=1.0, min_child_samples=30, feature_fraction=0.8, bagging_fraction=0.8 (all disabled in exp-002)",
+    "kept log1p target training (unlikely overfitting cause, empirically helpful)"
+  ],
+  "rationale_ref": "hypothesis.md",
+  "scores": {
+    "cv_primary": 377361.6739609331,
+    "cv_std": 20448.302409872715,
+    "cv_secondary": {},
+    "lb_public": null
+  },
+  "delta_vs_parent": {
+    "cv_primary": -13547.240710898,
+    "cv_primary_pct": 3.7,
+    "note": "cv_primary is WORSE than exp-002's 363,814.43 by design -- exp-002's better CV came with a worse real Kaggle score (468,497.07 vs exp-001's ~460,000), so this experiment deliberately trades CV for reduced overfitting risk. Only an actual submission can confirm whether it worked."
+  },
+  "repro": {
+    "runs": 3,
+    "params": {
+      "PROJECT_ROOT": "../../..",
+      "EXP_DIR": ".",
+      "SEED": 42,
+      "N_SPLITS": 5,
+      "N_THREADS": 4,
+      "TFIDF_MAX_FEATURES": 6000,
+      "TFIDF_MIN_DF": 3,
+      "SVD_COMPONENTS": 60,
+      "N_ESTIMATORS": 500,
+      "LEARNING_RATE": 0.05,
+      "NUM_LEAVES": 31,
+      "REG_ALPHA": 1.0,
+      "REG_LAMBDA": 1.0,
+      "MIN_CHILD_SAMPLES": 30,
+      "FEATURE_FRACTION": 0.8,
+      "BAGGING_FRACTION": 0.8,
+      "BAGGING_SEED": 42
+    },
+    "byte_identical": true,
+    "reduced_mode": false,
+    "submission_sha256": "9f4cfe523e43a38b0a2971c5440be8360c9267ac67cfe470755132c80ed157ec",
+    "loaded_matches": true,
+    "run_hashes": [
+      "9f4cfe523e43a38b0a2971c5440be8360c9267ac67cfe470755132c80ed157ec",
+      "9f4cfe523e43a38b0a2971c5440be8360c9267ac67cfe470755132c80ed157ec",
+      "9f4cfe523e43a38b0a2971c5440be8360c9267ac67cfe470755132c80ed157ec"
+    ]
+  },
+  "runtime_s": 380.9,
+  "env_hash": null,
+  "model": {
+    "sha256": "336b6cfe2f89ba1055796a2903e018343f9ac72badb406b04686153caa43ee15",
+    "bytes": 7782369,
+    "kaggle_dataset_version": null
+  },
+  "created": "2026-09-20T21:24:59+07:00"
+}

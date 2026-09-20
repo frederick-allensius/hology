@@ -13,16 +13,19 @@ are what stops the same idea being re-run by a teammate.
 ```mermaid
 graph LR
   exp000["exp-000 baseline-median<br/>550252.45628"]
-  exp001["exp-001 tfidf-regex-lgbm-mae<br/>396860.93647 (-153391.51981)"]
-  exp002["exp-002 numeric-regex-earlystop-lgbm<br/>363814.42625 (-33046.51022)<br/>champion"]
+  exp001["exp-001 tfidf-regex-lgbm-mae<br/>460000.00000 (-153391.51981)"]
+  exp002["exp-002 numeric-regex-earlystop-lgbm<br/>468497.07000 (-33046.51022)<br/>champion"]
+  exp003["exp-003 conservative-numeric-regularized<br/>377361.67396 (-13547.24071)"]
   exp000 --> exp001
   exp001 --> exp002
+  exp002 --> exp003
 ```
 
 ## Scores
 
 | exp | slug | parent | cv_primary | cv_std | lb_public | repro | reduced |
 |---|---|---|---|---|---|---|---|
-| exp-002 | numeric-regex-earlystop-lgbm | exp-001 | 363814.42625 | 18447.46439 | - | pass | yes |
-| exp-001 | tfidf-regex-lgbm-mae | exp-000 | 396860.93647 | 21194.65740 | - | pass | no |
+| exp-002 | numeric-regex-earlystop-lgbm | exp-001 | 363814.42625 | 18447.46439 | 468497.07000 | pass | yes |
+| exp-003 | conservative-numeric-regularized | exp-002 | 377361.67396 | 20448.30241 | - | pass | no |
+| exp-001 | tfidf-regex-lgbm-mae | exp-000 | 396860.93647 | 21194.65740 | 460000.00000 | pass | no |
 | exp-000 | baseline-median | - | 550252.45628 | - | - | pass | no |
