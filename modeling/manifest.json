@@ -1,23 +1,24 @@
 {
-  "id": "exp-001",
-  "slug": "tfidf-regex-lgbm-mae",
-  "parent": "exp-000",
+  "id": "exp-002",
+  "slug": "numeric-regex-earlystop-lgbm",
+  "parent": "exp-001",
   "changed": [
-    "regex-engineered domain features (bedroom/bathroom/sqft/acre/garage/pool/hoa/renovated/new_construction/year_built/redacted flags + char_len + word_count)",
-    "word-level TF-IDF (1-2gram, max_features=6000) + char-level TF-IDF (char_wb 3-5gram, max_features=6000), each reduced via TruncatedSVD(n_components=60)",
-    "LightGBM regressor, objective=regression_l1 (native MAE), n_estimators=300, learning_rate=0.05, num_leaves=31, no subsampling (feature_fraction=bagging_fraction=1.0)",
-    "5-fold KFold CV with TF-IDF/SVD refit inside every fold (no vocabulary leakage)"
+    "numeric-magnitude regex features (bed/bath count, sqft, acreage, garage spaces, year built as NaN-capable floats) replacing exp-001's boolean-only flags",
+    "larger TF-IDF vocabulary (20k word + 20k char, up from 6k/6k)",
+    "log1p(listPrice) training target with expm1 back-transform, instead of raw-scale training",
+    "more model capacity: num_leaves=63, n_estimators=2500 fixed (up from num_leaves=31, n_estimators=300), no early-stopping holdout so 100% of fold data is used",
+    "rejected and documented (not adopted): sentence-embedding features (all-MiniLM-L6-v2) and out-of-fold city gazetteer target-encoding, both tested on a holdout and found to not improve or slightly hurt score"
   ],
   "rationale_ref": "hypothesis.md",
   "scores": {
-    "cv_primary": 396860.9364714283,
-    "cv_std": 21194.657397858762,
+    "cv_primary": 363814.4262500411,
+    "cv_std": 18447.46438890421,
     "cv_secondary": {},
     "lb_public": null
   },
   "delta_vs_parent": {
-    "cv_primary": -153391.51981272473,
-    "cv_primary_pct": -27.9
+    "cv_primary": -33046.5102213872,
+    "cv_primary_pct": -8.3
   },
   "repro": {
     "runs": 3,
@@ -27,29 +28,29 @@
       "SEED": 42,
       "N_SPLITS": 5,
       "N_THREADS": 4,
-      "TFIDF_MAX_FEATURES": 6000,
-      "TFIDF_MIN_DF": 3,
-      "SVD_COMPONENTS": 60,
-      "N_ESTIMATORS": 300,
+      "TFIDF_MAX_FEATURES": 20000,
+      "TFIDF_MIN_DF": 2,
+      "SVD_COMPONENTS": 120,
+      "N_ESTIMATORS": 2500,
       "LEARNING_RATE": 0.05,
-      "NUM_LEAVES": 31
+      "NUM_LEAVES": 63
     },
     "byte_identical": true,
-    "reduced_mode": false,
-    "submission_sha256": "5e112c776ffebccc3b8dab6c7fd4d1d569cfca4c64bf12db49ddac5f7a2b606d",
+    "reduced_mode": true,
+    "submission_sha256": "a9860b9344466fffcf06b8577ae4a7de447e09135803f39e2824950b06bb870c",
     "loaded_matches": true,
     "run_hashes": [
-      "5e112c776ffebccc3b8dab6c7fd4d1d569cfca4c64bf12db49ddac5f7a2b606d",
-      "5e112c776ffebccc3b8dab6c7fd4d1d569cfca4c64bf12db49ddac5f7a2b606d",
-      "5e112c776ffebccc3b8dab6c7fd4d1d569cfca4c64bf12db49ddac5f7a2b606d"
+      "a9860b9344466fffcf06b8577ae4a7de447e09135803f39e2824950b06bb870c",
+      "a9860b9344466fffcf06b8577ae4a7de447e09135803f39e2824950b06bb870c",
+      "a9860b9344466fffcf06b8577ae4a7de447e09135803f39e2824950b06bb870c"
     ]
   },
-  "runtime_s": 454.2,
+  "runtime_s": 1205.0,
   "env_hash": null,
   "model": {
-    "sha256": "627ac6606faa74cef90c4b65983a9ea8edadc2a7508dc4d3d0047883ab490a01",
-    "bytes": 7159693,
+    "sha256": "fb46ab7f8cf9f30e8c6706945525fafa0afde57594a9c8f42d3013992e749900",
+    "bytes": 54860136,
     "kaggle_dataset_version": null
   },
-  "created": "2026-09-20T12:26:59+07:00"
+  "created": "2026-09-20T16:31:40+07:00"
 }

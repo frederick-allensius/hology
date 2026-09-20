@@ -21,17 +21,35 @@
     "cv_primary_pct": -8.3
   },
   "repro": {
-    "runs": 0,
-    "byte_identical": null,
-    "reduced_mode": null,
-    "submission_sha256": null,
-    "loaded_matches": null
+    "runs": 3,
+    "params": {
+      "PROJECT_ROOT": "../../..",
+      "EXP_DIR": ".",
+      "SEED": 42,
+      "N_SPLITS": 5,
+      "N_THREADS": 4,
+      "TFIDF_MAX_FEATURES": 20000,
+      "TFIDF_MIN_DF": 2,
+      "SVD_COMPONENTS": 120,
+      "N_ESTIMATORS": 2500,
+      "LEARNING_RATE": 0.05,
+      "NUM_LEAVES": 63
+    },
+    "byte_identical": true,
+    "reduced_mode": true,
+    "submission_sha256": "a9860b9344466fffcf06b8577ae4a7de447e09135803f39e2824950b06bb870c",
+    "loaded_matches": true,
+    "run_hashes": [
+      "a9860b9344466fffcf06b8577ae4a7de447e09135803f39e2824950b06bb870c",
+      "a9860b9344466fffcf06b8577ae4a7de447e09135803f39e2824950b06bb870c",
+      "a9860b9344466fffcf06b8577ae4a7de447e09135803f39e2824950b06bb870c"
+    ]
   },
-  "runtime_s": null,
+  "runtime_s": 1205.0,
   "env_hash": null,
   "model": {
-    "sha256": null,
-    "bytes": null,
+    "sha256": "fb46ab7f8cf9f30e8c6706945525fafa0afde57594a9c8f42d3013992e749900",
+    "bytes": 54860136,
     "kaggle_dataset_version": null
   },
   "created": "2026-09-20T16:31:40+07:00"
