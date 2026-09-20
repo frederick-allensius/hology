@@ -1,0 +1,13 @@
+{
+  "id": "frederickallensius/hology-price-distilbert-finetune",
+  "title": "Hology Price DistilBERT Finetune",
+  "code_file": "transformer-price-finetune.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "dataset_sources": [],
+  "competition_sources": ["holomine-property-price-prediction-from-sales-desc-task-2"],
+  "kernel_sources": []
+}
